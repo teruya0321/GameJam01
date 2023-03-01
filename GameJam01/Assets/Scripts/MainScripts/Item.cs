@@ -6,6 +6,7 @@ public class Item : MonoBehaviour
 {
     Rigidbody mainRb;
     FixedJoint joint;
+    Transform pos;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,8 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            pos = collision.gameObject.transform;
+            
             mainRb = collision.gameObject.GetComponent<Rigidbody>();
             joint.connectedBody = mainRb;
         }
