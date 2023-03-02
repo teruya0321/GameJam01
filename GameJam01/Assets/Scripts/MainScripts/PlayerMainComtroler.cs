@@ -6,6 +6,7 @@ public class PlayerMainComtroler : MonoBehaviour
 {
     Rigidbody myRb;
     Vector3 tol;
+    bool fallDown;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,17 +16,22 @@ public class PlayerMainComtroler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if(fallDown && Input.GetKeyDown(KeyCode.R))
         {
-            transform.Rotate(0f, -0.1f, 0f);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Rotate(0f, 0.1f, 0f);
+            transform.position += transform.up * 2;
+            transform.localEulerAngles = Vector3.zero;
+            fallDown = false;
         }
     }
     private void FixedUpdate()
     {
         //tol = Vector3.zero;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Ground")
+        {
+            fallDown = true;
+        }
     }
 }

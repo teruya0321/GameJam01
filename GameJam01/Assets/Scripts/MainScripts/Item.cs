@@ -7,10 +7,12 @@ public class Item : MonoBehaviour
     Rigidbody mainRb;
     FixedJoint joint;
     Transform pos;
+    public Component sclipt;
     // Start is called before the first frame update
     void Start()
     {
         joint = GetComponent<FixedJoint>();
+        //gameObject.AddComponent<HingeJoint>();
     }
 
     // Update is called once per frame
