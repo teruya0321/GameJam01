@@ -18,7 +18,7 @@ public class PlayerMainComtroler : MonoBehaviour
     {
         if(fallDown && Input.GetKeyDown(KeyCode.R))
         {
-            transform.position += transform.up * 2;
+            transform.position += transform.up * 5;
             transform.localEulerAngles = Vector3.zero;
             fallDown = false;
         }

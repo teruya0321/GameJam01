@@ -12,11 +12,15 @@ public class PlayerLegComtroler : MonoBehaviour
     public float speed = 20;
     public bool isGround;
     bool moving;
+    public GameObject flont;
+    public GameObject back;
     // Start is called before the first frame update
     void Start()
     {
         myRb = GetComponent<Rigidbody>();
         joint = GetComponent<FixedJoint>();
+        //flont = GameObject.Find("/Flont");
+        //back = GameObject.Find("/Back");
     }
 
     // Update is called once per frame
@@ -35,7 +39,7 @@ public class PlayerLegComtroler : MonoBehaviour
         }
         if (!moving)
         {
-            //myRb.velocity = Vector3.zero;
+            myRb.velocity = Vector3.zero;
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -65,12 +69,14 @@ public class PlayerLegComtroler : MonoBehaviour
             //myRb.velocity = main.transform.forward * speed;
             Debug.Log("‚Å‚«‚Ä‚é‚æ");
             moving = true;
-            myRb.AddForce(transform.forward * 30);
+            myRb.AddForce(transform.forward * speed);
+            myRb.AddForce(flont.transform.right * speed);
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            //myRb.velocity = main.transform.forward * speed * -1;
-            myRb.AddForce(transform.forward * -30);
+            //myRb.velocity = main.transform.forward * -speed;
+            myRb.AddForce(transform.forward * -speed);
+            myRb.AddForce(back.transform.right * speed);
             moving = true;
         }
         else
@@ -84,13 +90,15 @@ public class PlayerLegComtroler : MonoBehaviour
         {
             //myRb.velocity = main.transform.forward * speed;
             moving = true;
-            myRb.AddForce(transform.forward * 30);
+            myRb.AddForce(transform.forward * speed);
+            myRb.AddForce(flont.transform.right * -speed);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            //myRb.velocity = main.transform.forward * speed * -1;
+            //myRb.velocity = main.transform.forward * -speed;
             moving = true;
-            myRb.AddForce(transform.forward * -30);
+            myRb.AddForce(transform.forward * -speed);
+            myRb.AddForce(back.transform.right * -speed );
         }
     }
 }
