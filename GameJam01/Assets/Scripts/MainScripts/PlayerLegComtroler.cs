@@ -39,7 +39,15 @@ public class PlayerLegComtroler : MonoBehaviour
         }
         if (!moving)
         {
-            myRb.velocity = Vector3.zero;
+            //myRb.velocity = Vector3.zero;
+        }
+        if(Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.E))
+        {
+            myRb.AddForce(transform.forward * -speed / 2);
+        }
+        if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
+        {
+            myRb.AddForce(transform.forward * speed / 2);
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -70,13 +78,13 @@ public class PlayerLegComtroler : MonoBehaviour
             Debug.Log("‚Å‚«‚Ä‚é‚æ");
             moving = true;
             myRb.AddForce(transform.forward * speed);
-            myRb.AddForce(flont.transform.right * speed);
+            //myRb.AddForce(flont.transform.right * speed);
         }
         else if (Input.GetKey(KeyCode.A))
         {
             //myRb.velocity = main.transform.forward * -speed;
             myRb.AddForce(transform.forward * -speed);
-            myRb.AddForce(back.transform.right * speed);
+            //myRb.AddForce(back.transform.right * speed);
             moving = true;
         }
         else
@@ -91,14 +99,14 @@ public class PlayerLegComtroler : MonoBehaviour
             //myRb.velocity = main.transform.forward * speed;
             moving = true;
             myRb.AddForce(transform.forward * speed);
-            myRb.AddForce(flont.transform.right * -speed);
+            //myRb.AddForce(flont.transform.right * -speed);
         }
         else if (Input.GetKey(KeyCode.D))
         {
             //myRb.velocity = main.transform.forward * -speed;
             moving = true;
             myRb.AddForce(transform.forward * -speed);
-            myRb.AddForce(back.transform.right * -speed );
+            //myRb.AddForce(back.transform.right * -speed );
         }
     }
 }

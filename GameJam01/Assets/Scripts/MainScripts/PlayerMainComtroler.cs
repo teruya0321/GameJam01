@@ -7,6 +7,7 @@ public class PlayerMainComtroler : MonoBehaviour
     Rigidbody myRb;
     Vector3 tol;
     bool fallDown;
+    public GameObject point;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +19,14 @@ public class PlayerMainComtroler : MonoBehaviour
     {
         if(fallDown && Input.GetKeyDown(KeyCode.R))
         {
-            transform.position += transform.up * 5;
+            transform.position = point.transform.position;
+            myRb.constraints = RigidbodyConstraints.FreezeAll;
             transform.localEulerAngles = Vector3.zero;
             fallDown = false;
+        }
+        else
+        {
+            myRb.constraints = RigidbodyConstraints.None;
         }
     }
     private void FixedUpdate()
