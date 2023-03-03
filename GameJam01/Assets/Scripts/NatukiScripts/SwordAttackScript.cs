@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class SwordAttackScript : MonoBehaviour
 {
-    public Collider attackCollider;
+    //public Collider attackCollider;
 
     public Animator animator;
 
     void Start()
     {
         animator = GetComponent<Animator>();   //アニメーションを取得する
+        animator.SetBool("Idel", true);
     }
 
     void Update()
@@ -18,14 +19,21 @@ public class SwordAttackScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("a");
-            animator.SetBool("Attack",true);  //マウスクリックで攻撃モーション
-            animator.SetBool("stop", false);
+            animator.SetBool("Idel", false);
+            animator.SetBool("Attack", true);//マウスクリックで攻撃モーション
+            Invoke("Idel", 1);
         }
 
     }
 
+    void Idel()
+    {
+        animator.SetBool("Idel", true);
+        animator.SetBool("Attack", false);
+    }
+
     //武器の判定を有効or無効切り替える
-    public void OffColliderAttack()
+    /*public void OffColliderAttack()
     {
         attackCollider.enabled = false;
     }
@@ -33,5 +41,5 @@ public class SwordAttackScript : MonoBehaviour
     { 
         attackCollider.enabled = true;
         Debug.Log("a");
-    }
+    }*/
 }
