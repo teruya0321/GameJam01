@@ -73,8 +73,8 @@ public class TsubasaScriptEnemy : MonoBehaviour
         }
         else
         {
-            collisionBool.SetActive(true);
             collisionDetector.SetActive(false);
+            collisionBool.SetActive(true);
             ray = new Ray(transform.position, transform.forward * 0);
         }
 
@@ -96,17 +96,20 @@ public class TsubasaScriptEnemy : MonoBehaviour
             navMeshAgent.destination = collider.transform.position;
             Debug.Log("’Ç‚¢‚©‚¯");
         }
+        else
+        {
+            moveEnemy = true;
+        }
     }
     public void OnBoolObject(Collider collider)
     {
         if (collider.CompareTag("Player"))
         {
-            rayDistance = true;
             rayDistance = false;
         }
         else
         {
-            rayDistance = false;
+            moveEnemy = true;
             rayDistance = true;
         }
 
