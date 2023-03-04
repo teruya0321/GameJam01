@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class SwordAttackScript : MonoBehaviour
 {
-    //public Collider attackCollider;
+    public Collider attackCollider;
 
     public Animator animator;
+
+    public Rigidbody pCube3;
+
 
     void Start()
     {
@@ -33,7 +36,7 @@ public class SwordAttackScript : MonoBehaviour
     }
 
     //•Ší‚Ì”»’è‚ğ—LŒøor–³ŒøØ‚è‘Ö‚¦‚é
-    /*public void OffColliderAttack()
+    public void OffColliderAttack()
     {
         attackCollider.enabled = false;
     }
@@ -41,5 +44,5 @@ public class SwordAttackScript : MonoBehaviour
     { 
         attackCollider.enabled = true;
         Debug.Log("a");
-    }*/
+    }
 }
