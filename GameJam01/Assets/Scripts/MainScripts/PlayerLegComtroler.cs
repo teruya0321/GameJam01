@@ -14,6 +14,7 @@ public class PlayerLegComtroler : MonoBehaviour
     bool moving;
     public GameObject flont;
     public GameObject back;
+    PlayerMainComtroler mainscript;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class PlayerLegComtroler : MonoBehaviour
         joint = GetComponent<FixedJoint>();
         //flont = GameObject.Find("/Flont");
         //back = GameObject.Find("/Back");
+        
     }
 
     // Update is called once per frame

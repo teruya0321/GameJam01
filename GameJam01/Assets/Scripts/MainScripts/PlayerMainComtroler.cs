@@ -8,6 +8,11 @@ public class PlayerMainComtroler : MonoBehaviour
     Vector3 tol;
     bool fallDown;
     public GameObject point;
+    public float speed = 50;
+    bool isGround;
+    public bool jumptrigger;
+    bool jump;
+    BoxCollider baranceCollider;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,27 +22,40 @@ public class PlayerMainComtroler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(fallDown && Input.GetKeyDown(KeyCode.R))
+        if (isGround && jump)
         {
-            transform.position = point.transform.position;
-            myRb.constraints = RigidbodyConstraints.FreezeAll;
-            transform.localEulerAngles = Vector3.zero;
-            fallDown = false;
+            
         }
-        else
+        if (Input.GetKey(KeyCode.W))
         {
-            myRb.constraints = RigidbodyConstraints.None;
+            myRb.velocity = transform.forward * speed;
         }
-    }
-    private void FixedUpdate()
-    {
-        //tol = Vector3.zero;
+        if (Input.GetKey(KeyCode.S))
+        {
+            myRb.velocity = transform.forward * -speed;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            myRb.AddTorque(Vector3.up * Mathf.PI * -50, ForceMode.Force);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            myRb.AddTorque(Vector3.up * Mathf.PI * 50, ForceMode.Force);
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Ground")
         {
-            fallDown = true;
+            isGround = true;
+
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGround = false;
         }
     }
 }

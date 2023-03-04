@@ -36,6 +36,7 @@ public class Item : MonoBehaviour
             transform.position = new Vector3(pos.x + randomX, pos.y + 5, pos.z + randomZ);
             posobj = null;
             Destroy(GetComponent<FixedJoint>());
+            transform.SetParent(null);
             script.enabled = false;
             conect = false;
         }
@@ -48,9 +49,10 @@ public class Item : MonoBehaviour
             mainRb = collision.gameObject.GetComponent<Rigidbody>();
             gameObject.transform.position = posobj.transform.position;
             gameObject.AddComponent<FixedJoint>();
+            transform.SetParent(collision.gameObject.transform);
             fix = GetComponent<FixedJoint>();
             fix.connectedBody = mainRb;
-            transform.localEulerAngles = posobj.transform.localEulerAngles;
+            transform.localEulerAngles = Vector3.zero;
             script.enabled = true;
             conect = true;
         }
