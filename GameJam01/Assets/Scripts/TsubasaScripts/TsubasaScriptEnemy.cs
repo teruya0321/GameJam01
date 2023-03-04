@@ -7,6 +7,8 @@ using UnityEngine.AI;
 public class TsubasaScriptEnemy : MonoBehaviour
 {
     public GameObject player;
+    public GameObject collisionDetector;
+    public GameObject collisionBool;
 
     private NavMeshAgent navMeshAgent;
 
@@ -16,22 +18,26 @@ public class TsubasaScriptEnemy : MonoBehaviour
     private float chargeTime;
     private float timeCount;
 
-    public float force;
     public float distance;
 
-
+    private bool rayDistance;
     private bool moveEnemy;
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>(); //NavMeshAgent‚ð•ÛŽ
+
+        rayDistance = true;
         moveEnemy = true;
 
         chargeTime = 3;
+
+        collisionBool.SetActive(true);
+        collisionDetector.SetActive(true);
     }
     void Update()
     {
         //rayPos = transform.position + new Vector3(0, 0, -8);  //Ray‚ÌˆÊ’u
-        ray = new Ray(transform.position,transform.forward * distance);
+
         Debug.DrawRay(transform.position, transform.forward * distance,Color.red);
 
         if (Physics.Raycast(ray,out hit,distance))
@@ -44,8 +50,12 @@ public class TsubasaScriptEnemy : MonoBehaviour
             }
             else
             {
+                Debug.Log("•Ç‚ª‚ ‚é‚æ‚¤‚¾");
                 moveEnemy = true;
+                rayDistance = false;
+
             }
+
         }
         if (moveEnemy)
         {
@@ -54,26 +64,52 @@ public class TsubasaScriptEnemy : MonoBehaviour
             timeCount += Time.deltaTime;
             transform.position += transform.forward * Time.deltaTime;
 
-            if (timeCount > chargeTime)
-            {
-                Vector3 course = new Vector3(0, UnityEngine.Random.Range(0, 360), 0);
-                transform.localRotation = Quaternion.Euler(course);
-
-                timeCount = 0;
-            }
         }
+        if (rayDistance)
+        {
+            collisionDetector.SetActive(true);
+            collisionBool.SetActive(false);
+            ray = new Ray(transform.position, transform.forward * distance);
+        }
+        else
+        {
+            collisionBool.SetActive(true);
+            collisionDetector.SetActive(false);
+            ray = new Ray(transform.position, transform.forward * 0);
+        }
+
+        if (timeCount > chargeTime)
+        {
+            Vector3 course = new Vector3(0, UnityEngine.Random.Range(0, 360), 0);
+            transform.localRotation = Quaternion.Euler(course);
+
+            timeCount = 0;
+        }
+
     }
     public void OnDestectObject(Collider collider)
     {
         if (collider.CompareTag("Player"))
         {
+            moveEnemy = false;
+            //rayDistance = true;
             navMeshAgent.destination = collider.transform.position;
             Debug.Log("’Ç‚¢‚©‚¯");
         }
+    }
+    public void OnBoolObject(Collider collider)
+    {
+        if (collider.CompareTag("Player"))
+        {
+            rayDistance = true;
+            rayDistance = false;
+        }
         else
         {
-            moveEnemy = true;
+            rayDistance = false;
+            rayDistance = true;
         }
+
     }
 
 }
