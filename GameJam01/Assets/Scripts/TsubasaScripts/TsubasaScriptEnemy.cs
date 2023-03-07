@@ -10,6 +10,11 @@ public class TsubasaScriptEnemy : MonoBehaviour
     public GameObject collisionDetector;
     public GameObject collisionBool;
 
+    public GameObject tsubasaSword;
+    public GameObject tsubasaHammer;
+    public GameObject tsubasaCanon;
+    public GameObject tsubasaShovel;
+
     private NavMeshAgent navMeshAgent;
 
     Ray ray;
@@ -33,6 +38,7 @@ public class TsubasaScriptEnemy : MonoBehaviour
 
         collisionBool.SetActive(true);
         collisionDetector.SetActive(true);
+
     }
     void Update()
     {
@@ -96,23 +102,50 @@ public class TsubasaScriptEnemy : MonoBehaviour
             navMeshAgent.destination = collider.transform.position;
             Debug.Log("’Ç‚¢‚©‚¯");
         }
-        else
-        {
-            moveEnemy = true;
-        }
     }
     public void OnBoolObject(Collider collider)
     {
-        if (collider.CompareTag("Player"))
-        {
-            rayDistance = false;
-        }
-        else
+        if (!collider.CompareTag("Player"))
         {
             moveEnemy = true;
             rayDistance = true;
         }
 
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            if (tsubasaSword.activeSelf)
+            {
+                tsubasaSword.SetActive(false);
+                Destroy(gameObject);
+            }
+            else
+            {
+                if (tsubasaHammer.activeSelf)
+                {
+                    tsubasaHammer.SetActive(false);
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    if (tsubasaShovel.activeSelf)
+                    {
+                        Destroy(gameObject);
+                        tsubasaShovel.SetActive(false);
+                    }
+                    else
+                    {
+                        if (tsubasaCanon.activeSelf)
+                        {
+                            tsubasaCanon.SetActive(false);
+                            Destroy(gameObject);
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }
