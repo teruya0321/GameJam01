@@ -359,6 +359,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457349470, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1328759169129119369, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
       propertyPath: m_Name
       value: RobotModel
@@ -456,7 +460,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455131f333e1e3c4f94cfacbd44713d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  script: {fileID: 729646249}
   posname: ConectPoint1
 --- !u!65 &729646251
 BoxCollider:
@@ -1547,17 +1550,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumppower: 0
+  jumppower: 100
   jumptrigger: 0
   swordtrigger: 0
   hammertrigger: 0
   shoveltrigger: 0
   sword: {fileID: 381891255}
-  swordScript: {fileID: 0}
+  swordScript: {fileID: 1843777155}
   hammer: {fileID: 1770109720}
-  hammerScript: {fileID: 0}
+  hammerScript: {fileID: 1843777154}
   shovel: {fileID: 341583698}
-  shovelScript: {fileID: 0}
+  shovelScript: {fileID: 1843777153}
 --- !u!65 &1843777152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1571,6 +1574,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 0.01, z: 2}
   m_Center: {x: 0, y: 0.01, z: 0}
+--- !u!114 &1843777153 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8415095134571866269, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
+  m_PrefabInstance: {fileID: 560188579}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843777149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6956017a817a08b45bc009c512a4ad38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1843777154 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 457349474, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
+  m_PrefabInstance: {fileID: 560188579}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843777149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f431186c8edf684abac115353b8f83b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1843777155 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 457349473, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
+  m_PrefabInstance: {fileID: 560188579}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843777149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4d438adf092ff4d856b92fa8f40446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1978468154
 GameObject:
   m_ObjectHideFlags: 0
