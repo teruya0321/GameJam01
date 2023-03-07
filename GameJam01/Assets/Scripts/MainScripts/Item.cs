@@ -6,7 +6,6 @@ public class Item : MonoBehaviour
 {
     Rigidbody myRb;
     Rigidbody mainRb;
-    public Behaviour script;
     public string posname;
     GameObject main;
     GameObject posobj;
@@ -16,13 +15,13 @@ public class Item : MonoBehaviour
 
     private void Awake()
     {
-        script.enabled = false;
+        
     }
     void Start()
     {
         myRb = GetComponent<Rigidbody>();
         //gameObject.AddComponent<HingeJoint>();
-        script.enabled = false;
+        
     }
 
     // Update is called once per frame
@@ -37,7 +36,6 @@ public class Item : MonoBehaviour
             posobj = null;
             Destroy(GetComponent<FixedJoint>());
             transform.SetParent(null);
-            script.enabled = false;
             conect = false;
         }
     }
@@ -53,7 +51,6 @@ public class Item : MonoBehaviour
             fix = GetComponent<FixedJoint>();
             fix.connectedBody = mainRb;
             transform.localEulerAngles = Vector3.zero;
-            script.enabled = true;
             conect = true;
         }
     }

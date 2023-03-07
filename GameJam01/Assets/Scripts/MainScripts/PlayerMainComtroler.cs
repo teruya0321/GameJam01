@@ -76,7 +76,31 @@ public class PlayerMainComtroler : MonoBehaviour
             myRb.AddTorque(Vector3.up * Mathf.PI * 50, ForceMode.Force);
             //‰E‰ñ“]
         }
-        
+        if (swordtrigger)
+        {
+            Sword();
+        }
+        else
+        {
+            sword.SetActive(false);
+        }
+        if (hammertrigger)
+        {
+            Hammer();
+        }
+        else
+        {
+            hammer.SetActive(false);
+        }
+        if (shoveltrigger)
+        {
+            Shovel();
+        }
+        else
+        {
+            shovel.SetActive(false);
+        }
+
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -95,5 +119,17 @@ public class PlayerMainComtroler : MonoBehaviour
             //’n–Ê‚©‚ç—£‚ê‚½‚çbool‚ðfalse‚É
             baranceCollider.enabled = true;
         }
+    }
+    void Sword()
+    {
+        sword.SetActive(true);
+    }
+    void Hammer()
+    {
+        hammer.SetActive(true);
+    }
+    void Shovel()
+    {
+        shovel.SetActive(true);
     }
 }
