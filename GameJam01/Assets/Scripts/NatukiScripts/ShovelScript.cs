@@ -2,28 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordAttackScript : MonoBehaviour
+public class ShovelScript : MonoBehaviour
 {
     public Collider attackCollider;
 
     public Animator animator;
 
-    public Rigidbody Sword;
+    public Rigidbody Shovel;
 
 
     void Start()
     {
         animator = GetComponent<Animator>();   //アニメーションを取得する
-        animator.SetBool("Idel", true);
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))//左クリックで攻撃モーション
+        if (Input.GetMouseButtonDown(2))//中クリックで攻撃モーション
         {
-            Debug.Log("S");
+            Debug.Log("Sho");
             animator.SetBool("Idel", false);
-            animator.SetBool("Attack", true);
+            animator.SetBool("Shovel", true);
             Invoke("Idel", 1);
         }
 
@@ -32,6 +31,6 @@ public class SwordAttackScript : MonoBehaviour
     void Idel()//Idel状態に移行する
     {
         animator.SetBool("Idel", true);
-        animator.SetBool("Attack", false);
+        animator.SetBool("Shovel", false);
     }
 }
