@@ -19,7 +19,7 @@ public class PlayerMainComtroler : MonoBehaviour
     //ハンマーを取得した時の判定
     public bool shoveltrigger;
     //シャベルを取得した時の判定
-    BoxCollider baranceCollider;
+    public BoxCollider baranceCollider;
     //キャラの転倒防止用のコライダー ジャンプするときにfalseにする
     public GameObject sword;
     //剣のオブジェクト
@@ -39,66 +39,116 @@ public class PlayerMainComtroler : MonoBehaviour
         myRb = GetComponent<Rigidbody>();
         //Rigidbodyの取得
         sword.SetActive(false);
+        swordScript.enabled = false;
         hammer.SetActive(false);
+        hammerScript.enabled = false;
         shovel.SetActive(false);
+        shovelScript.enabled = false;
         //最初はすべてのアイテムを無効化する
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            transform.position = Vector3.zero;
+            transform.localEulerAngles = Vector3.zero;
+            //ポジションリセット用 前置きあってもいいかも
+        }
         if (Input.GetKey(KeyCode.P))
         {
             jumptrigger = true;
+            //デバッグ用 ジャンプトリガー
         }
-        if ((isGround && jumptrigger) && Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            myRb.AddForce(transform.up * jumppower, ForceMode.Impulse);
-            baranceCollider.enabled = false;
+            swordtrigger = true;
+            //デバッグ用 剣のトリガー
         }
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            myRb.velocity = transform.forward * speed;
-            //前進
+            hammertrigger = true;
+            //デバッグ用 ハンマーのトリガー
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.J))
         {
-            myRb.velocity = transform.forward * -speed;
-            //後進
+            shoveltrigger = true;
+            //デバッグ用 シャベルのトリガー
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            myRb.AddTorque(Vector3.up * Mathf.PI * -50, ForceMode.Force);
-            //左回転
+            jumptrigger = false;
+            swordtrigger = false;
+            hammertrigger = false;
+            shoveltrigger = false;
+            //デバッグ用 全部のトリガーリセット
         }
-        if (Input.GetKey(KeyCode.D))
+        if (isGround)
         {
-            myRb.AddTorque(Vector3.up * Mathf.PI * 50, ForceMode.Force);
-            //右回転
+            if (Input.GetKey(KeyCode.W))
+            {
+                myRb.velocity = transform.forward * speed;
+                //前進
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                myRb.velocity = transform.forward * -speed;
+                //後進
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                myRb.AddTorque(Vector3.up * Mathf.PI * -50, ForceMode.Force);
+                //左回転
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                myRb.AddTorque(Vector3.up * Mathf.PI * 50, ForceMode.Force);
+                //右回転
+            }
+            if(jumptrigger && Input.GetKeyDown(KeyCode.Space))
+            {
+                myRb.AddForce(transform.up * jumppower, ForceMode.Impulse);
+                //ジャンプ
+                baranceCollider.enabled = false;
+                //バランス維持用のコライダーを一時的に無効化する
+            }
         }
         if (swordtrigger)
         {
-            Sword();
+            sword.SetActive(true);
+            swordScript.enabled = true;
+            //剣を有効にする
         }
         else
         {
             sword.SetActive(false);
+            swordScript.enabled = false;
+            //剣を無効化する
         }
         if (hammertrigger)
         {
-            Hammer();
+            hammer.SetActive(true);
+            hammerScript.enabled = true;
+            //ハンマーを有効にする
         }
         else
         {
             hammer.SetActive(false);
+            hammerScript.enabled = false;
+            //ハンマーを無効化する
         }
         if (shoveltrigger)
         {
-            Shovel();
+            shovel.SetActive(true);
+            shovelScript.enabled = true;
+            //シャベルを有効にする
         }
         else
         {
             shovel.SetActive(false);
+            shovelScript.enabled = false;
+            //シャベルを無効化する
         }
 
     }
@@ -119,17 +169,5 @@ public class PlayerMainComtroler : MonoBehaviour
             //地面から離れたらboolをfalseに
             baranceCollider.enabled = true;
         }
-    }
-    void Sword()
-    {
-        sword.SetActive(true);
-    }
-    void Hammer()
-    {
-        hammer.SetActive(true);
-    }
-    void Shovel()
-    {
-        shovel.SetActive(true);
     }
 }

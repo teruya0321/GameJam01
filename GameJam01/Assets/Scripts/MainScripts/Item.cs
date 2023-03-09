@@ -4,54 +4,46 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    Rigidbody myRb;
-    Rigidbody mainRb;
-    public string posname;
-    GameObject main;
-    GameObject posobj;
-    FixedJoint fix;
-    bool conect = false;
-    // Start is called before the first frame update
-
-    private void Awake()
+    public int itemNumber; //アイテムの種類判別用の変数
+    private void Start()
     {
-        
-    }
-    void Start()
-    {
-        myRb = GetComponent<Rigidbody>();
-        //gameObject.AddComponent<HingeJoint>();
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (conect && Input.GetKeyDown(KeyCode.Space))
+        // アイテムのタグを使って検知する
+        //アイテムのタグがSwordなら0、Hammerなら1、Shovelなら2となる
+        if(gameObject.tag == "Sword")
         {
-            int randomX = Random.Range(-5, 6);
-            int randomZ = Random.Range(-5, 6);
-            Vector3 pos = transform.position;
-            transform.position = new Vector3(pos.x + randomX, pos.y + 5, pos.z + randomZ);
-            posobj = null;
-            Destroy(GetComponent<FixedJoint>());
-            transform.SetParent(null);
-            conect = false;
+            itemNumber = 0;
+        }
+        if (gameObject.tag == "Hammer")
+        {
+            itemNumber = 1;
+        }
+        if (gameObject.tag == "Shovel")
+        {
+            itemNumber = 2;
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" && !conect)
+        if(collision.gameObject.tag == "Player")
         {
-            posobj = GameObject.Find(posname);
-            mainRb = collision.gameObject.GetComponent<Rigidbody>();
-            gameObject.transform.position = posobj.transform.position;
-            gameObject.AddComponent<FixedJoint>();
-            transform.SetParent(collision.gameObject.transform);
-            fix = GetComponent<FixedJoint>();
-            fix.connectedBody = mainRb;
-            transform.localEulerAngles = Vector3.zero;
-            conect = true;
+            //当たったオブジェクトがプレイヤーなら、プレイヤーのスクリプトを取得する
+            PlayerMainComtroler playerScript = collision.gameObject.GetComponent<PlayerMainComtroler>();
+            //最初に割り当てたナンバーに応じて、有効にするアイテムを選択する
+            if (itemNumber == 0)
+            {
+                playerScript.swordtrigger = true;
+            }
+            if (itemNumber == 1)
+            {
+                playerScript.hammertrigger = true;
+            }
+            if (itemNumber == 0)
+            {
+                playerScript.shoveltrigger = true;
+            }
+            //最後に元となったアイテムを消す
+            Destroy(gameObject);
         }
     }
+
 }

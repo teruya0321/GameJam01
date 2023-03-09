@@ -167,7 +167,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341583698}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -186,7 +186,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381891255}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -359,9 +359,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 457349470, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
+    - target: {fileID: 400011318, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400011319, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400011319, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 430678986, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 430678987, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 457349470, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1328759169129119369, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
       propertyPath: m_Name
@@ -410,6 +430,18 @@ PrefabInstance:
     - target: {fileID: 1818156550880732211, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196815178028652961, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351964020909349523, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351964020909349523, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 457349469, guid: a4951d481d2a54f41ac3a9d3788aef3d, type: 3}
@@ -460,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455131f333e1e3c4f94cfacbd44713d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posname: ConectPoint1
+  itemNumber: 0
 --- !u!65 &729646251
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -966,6 +998,7 @@ MonoBehaviour:
   swordtrigger: 0
   hammertrigger: 0
   shoveltrigger: 0
+  baranceCollider: {fileID: 0}
   sword: {fileID: 0}
   swordScript: {fileID: 0}
   hammer: {fileID: 0}
@@ -1510,7 +1543,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1770109720}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -1550,11 +1583,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumppower: 100
+  jumppower: 300
   jumptrigger: 0
   swordtrigger: 0
   hammertrigger: 0
   shoveltrigger: 0
+  baranceCollider: {fileID: 1843777152}
   sword: {fileID: 381891255}
   swordScript: {fileID: 1843777155}
   hammer: {fileID: 1770109720}
